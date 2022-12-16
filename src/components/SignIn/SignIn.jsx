@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import instanceAPI from '../api/instance'
-import { fetchAuth } from '../redux/slices/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom/dist'
+import {fetchAuth} from "../../redux/reducers/authReducer";
+import "./SignIn.scss"
 
-function Login() {
+function SignIn() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const isAuth = useSelector(state => state.auth.isAuth)
@@ -17,29 +17,28 @@ function Login() {
 
 
     if (isAuth) {
-        return <Navigate to="/projects" />
+        return <Navigate to="/main" />
     }
 
 
     return (
-        <div className='login__wrapper'>
+        <div className='container'>
             <div className="login">
-                <div className="login__logo">Customary</div>
-                <form action="submit" onSubmit={onLogin} className="login__form">
-                    <p className="login__title">Sign In to Customary</p>
-                    <div className="login__field">
-                        <label htmlFor="email" className="login__label">Email:</label>
-                        <input placeholder='Email' id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="login__input" />
+                <div className="header">Customary</div>
+                <form action="submit" onSubmit={onLogin} className="loginBody">
+                    <div className="loginInputs">
+                        <label htmlFor="email" >Email:</label>
+                        <input placeholder='Email' id="email" value={email} onChange={(e) => setEmail(e.target.value)} type="email" />
                     </div>
-                    <div className="login__field">
-                        <label htmlFor="password" className="login__label">Password:</label>
-                        <input placeholder='Password' id="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="login__input" />
+                    <div className="loginInputs">
+                        <label htmlFor="password">Password:</label>
+                        <input placeholder='Password' id="password" value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
                     </div>
-                    <input type="submit" className='login__submit' value="Continue" />
+                    <input type="submit" value="Continue" />
                 </form>
             </div>
         </div>
     )
 }
 
-export default Login
+export default SignIn

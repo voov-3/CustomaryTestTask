@@ -1,12 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {KTSVG} from "../assets/helpers";
 import {Dropdown1} from "../components/DropDown/Dropdown1";
+import {KTSVG} from "../assets/helpers/components/KTSVG";
 
-type Props = {
-  className: string
-}
 
-const ListsWidget3: React.FC<Props> = ({className}) => {
+const ListsWidget3 = ({className}) => {
   return (
     <div className={`card ${className}`}>
       {/* begin::Header */}

@@ -1,12 +1,4 @@
-export interface MessageModel {
-  user: number
-  type: 'in' | 'out'
-  text: string
-  time: string
-  template?: boolean
-}
-
-const defaultMessages: Array<MessageModel> = [
+const defaultMessages = [
   {
     user: 4,
     type: 'in',
@@ -65,16 +57,7 @@ const defaultMessages: Array<MessageModel> = [
   },
 ]
 
-export interface UserInfoModel {
-  initials?: {label: string; state: 'warning' | 'danger' | 'primary' | 'success' | 'info'}
-  name: string
-  avatar?: string
-  email: string
-  position: string
-  online: boolean
-}
-
-const defaultUserInfos: Array<UserInfoModel> = [
+const defaultUserInfos = [
   {
     name: 'Emma Smith',
     avatar: 'avatars/300-6.jpg',
@@ -190,22 +173,15 @@ const defaultUserInfos: Array<UserInfoModel> = [
   },
 ]
 
-const messageFromClient: MessageModel = {
+const messageFromClient = {
   user: 4,
   type: 'in',
   text: 'Thank you for your awesome support!',
   time: 'Just now',
 }
 
-export interface AlertModel {
-  title: string
-  description: string
-  time: string
-  icon: string
-  state: 'primary' | 'danger' | 'warning' | 'success' | 'info'
-}
 
-const defaultAlerts: Array<AlertModel> = [
+const defaultAlerts = [
   {
     title: 'Project Alice',
     description: 'Phase 1 development',
@@ -256,14 +232,8 @@ const defaultAlerts: Array<AlertModel> = [
     state: 'warning',
   },
 ]
-export interface LogModel {
-  code: string
-  state: 'success' | 'danger' | 'warning'
-  message: string
-  time: string
-}
 
-const defaultLogs: Array<LogModel> = [
+const defaultLogs = [
   {code: '200 OK', state: 'success', message: 'New order', time: 'Just now'},
   {code: '500 ERR', state: 'danger', message: 'New customer', time: '2 hrs'},
   {code: '200 OK', state: 'success', message: 'Payment process', time: '5 hrs'},

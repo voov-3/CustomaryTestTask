@@ -1,17 +1,16 @@
-import {createContext, Dispatch, SetStateAction, useEffect, useState} from 'react'
+import {createContext, useEffect, useState} from 'react'
 import qs from 'qs'
-import {ID, QueryResponseContextProps, QueryState} from './models'
 
-function createResponseContext<T>(initialState: QueryResponseContextProps<T>) {
+function createResponseContext(initialState) {
   return createContext(initialState)
 }
 
-function isNotEmpty(obj: unknown) {
+function isNotEmpty(obj) {
   return obj !== undefined && obj !== null && obj !== ''
 }
 
 // Example: page=1&items_per_page=10&sort=id&order=desc&search=a&filter_name=a&filter_online=false
-function stringifyRequestQuery(state: QueryState): string {
+function stringifyRequestQuery(state) {
   const pagination = qs.stringify(state, {filter: ['page', 'items_per_page'], skipNulls: true})
   const sort = qs.stringify(state, {filter: ['sort', 'order'], skipNulls: true})
   const search = isNotEmpty(state.search)
@@ -19,7 +18,7 @@ function stringifyRequestQuery(state: QueryState): string {
     : ''
 
   const filter = state.filter
-    ? Object.entries(state.filter as Object)
+    ? Object.entries(state.filter)
         .filter((obj) => isNotEmpty(obj[1]))
         .map((obj) => {
           return `filter_${obj[0]}=${obj[1]}`
@@ -33,12 +32,12 @@ function stringifyRequestQuery(state: QueryState): string {
     .toLowerCase()
 }
 
-function parseRequestQuery(query: string): QueryState {
-  const cache: unknown = qs.parse(query)
-  return cache as QueryState
-}
+// function parseRequestQuery(query) {
+//   const cache = qs.parse(query)
+//   return cache
+// }
 
-function calculatedGroupingIsDisabled<T>(isLoading: boolean, data: Array<T> | undefined): boolean {
+function calculatedGroupingIsDisabled(isLoading, data) {
   if (isLoading) {
     return true
   }
@@ -46,7 +45,7 @@ function calculatedGroupingIsDisabled<T>(isLoading: boolean, data: Array<T> | un
   return !data || !data.length
 }
 
-function calculateIsAllDataSelected<T>(data: Array<T> | undefined, selected: Array<ID>): boolean {
+function calculateIsAllDataSelected(data, selected) {
   if (!data) {
     return false
   }
@@ -55,9 +54,9 @@ function calculateIsAllDataSelected<T>(data: Array<T> | undefined, selected: Arr
 }
 
 function groupingOnSelect(
-  id: ID,
-  selected: Array<ID>,
-  setSelected: Dispatch<SetStateAction<Array<ID>>>
+  id,
+  selected,
+  setSelected
 ) {
   if (!id) {
     return
@@ -72,10 +71,10 @@ function groupingOnSelect(
   }
 }
 
-function groupingOnSelectAll<T>(
-  isAllSelected: boolean,
-  setSelected: Dispatch<SetStateAction<Array<ID>>>,
-  data?: Array<T & {id?: ID}>
+function groupingOnSelectAll(
+  isAllSelected,
+  setSelected,
+  data
 ) {
   if (isAllSelected) {
     setSelected([])
@@ -90,7 +89,7 @@ function groupingOnSelectAll<T>(
 }
 
 // Hook
-function useDebounce(value: string | undefined, delay: number) {
+function useDebounce(value, delay) {
   // State and setters for debounced value
   const [debouncedValue, setDebouncedValue] = useState(value)
   useEffect(
@@ -114,7 +113,6 @@ function useDebounce(value: string | undefined, delay: number) {
 export {
   createResponseContext,
   stringifyRequestQuery,
-  parseRequestQuery,
   calculatedGroupingIsDisabled,
   calculateIsAllDataSelected,
   groupingOnSelect,

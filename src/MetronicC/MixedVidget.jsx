@@ -1,162 +1,195 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import {Dropdown1} from "../components/DropDown/Dropdown1";
-import {KTSVG} from "../assets/helpers/components/KTSVG";
+import React, {useEffect, useRef} from 'react'
+import ApexCharts from 'apexcharts'
+// import {useThemeMode} from "../assets/theme-mode/ThemeModeProvider";
+// import {getCSSVariableValue} from "../assets/ts/_utils";
 
+function getCSSVariableValue(variableName) {
+  let hex = getComputedStyle(document.documentElement).getPropertyValue(variableName)
+  if (hex && hex.length > 0) {
+    hex = hex.trim()
+  }
 
-const ListsWidget3 = ({className}) => {
+  return hex
+}
+
+const MixedWidget10 = ({className, chartColor, chartHeight}) => {
+  const chartRef = useRef(null)
+  // const {mode} = useThemeMode()
+  const refreshChart = () => {
+    if (!chartRef.current) {
+      return
+    }
+
+    const chart = new ApexCharts(chartRef.current, chartOptions(chartColor, chartHeight))
+    if (chart) {
+      chart.render()
+    }
+
+    return chart
+  }
+
+  useEffect(() => {
+    const chart = refreshChart()
+
+    return () => {
+      if (chart) {
+        chart.destroy()
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chartRef])
+
   return (
-    <div className={`card ${className}`}>
-      {/* begin::Header */}
-      <div className='card-header border-0'>
-        <h3 className='card-title fw-bold text-dark'>Todo</h3>
-        <div className='card-toolbar'>
-          {/* begin::Menu */}
-          <button
-            type='button'
-            className='btn btn-sm btn-icon btn-color-primary btn-active-light-primary'
-            data-kt-menu-trigger='click'
-            data-kt-menu-placement='bottom-end'
-            data-kt-menu-flip='top-end'
-          >
-            <KTSVG path='/media/icons/duotune/general/gen024.svg' className='svg-icon-2' />
-          </button>
-          <Dropdown1 />
-          {/* end::Menu */}
+      <div className={`card ${className}`}>
+        {/* begin::Body */}
+        <div className='card-body d-flex flex-column p-0'>
+          {/* begin::Stats */}
+          <div className='flex-grow-1 card-p pb-0'>
+            <div className='d-flex flex-stack flex-wrap'>
+              <div className='me-2'>
+                <a href='#' className='text-dark text-hover-primary fw-bold fs-3'>
+                  Generate Reports
+                </a>
+
+                <div className='text-muted fs-7 fw-semibold'>Finance and accounting reports</div>
+              </div>
+
+              <div className={`fw-bold fs-3 text-${chartColor}`}>$24,500</div>
+            </div>
+          </div>
+          {/* end::Stats */}
+
+          {/* begin::Chart */}
+          <div ref={chartRef} className='mixed-widget-7-chart card-rounded-bottom'></div>
+          {/* end::Chart */}
         </div>
+        {/* end::Body */}
       </div>
-      {/* end::Header */}
-      {/* begin::Body */}
-      <div className='card-body pt-2'>
-        {/* begin::Item */}
-        <div className='d-flex align-items-center mb-8'>
-          {/* begin::Bullet */}
-          <span className='bullet bullet-vertical h-40px bg-success'></span>
-          {/* end::Bullet */}
-          {/* begin::Checkbox */}
-          <div className='form-check form-check-custom form-check-solid mx-5'>
-            <input className='form-check-input' type='checkbox' value='' />
-          </div>
-          {/* end::Checkbox */}
-          {/* begin::Description */}
-          <div className='flex-grow-1'>
-            <a href='#' className='text-gray-800 text-hover-primary fw-bold fs-6'>
-              Create FireStone Logo
-            </a>
-            <span className='text-muted fw-semibold d-block'>Due in 2 Days</span>
-          </div>
-          {/* end::Description */}
-          <span className='badge badge-light-success fs-8 fw-bold'>New</span>
-        </div>
-        {/* end:Item */}
-        {/* begin::Item */}
-        <div className='d-flex align-items-center mb-8'>
-          {/* begin::Bullet */}
-          <span className='bullet bullet-vertical h-40px bg-primary'></span>
-          {/* end::Bullet */}
-          {/* begin::Checkbox */}
-          <div className='form-check form-check-custom form-check-solid mx-5'>
-            <input className='form-check-input' type='checkbox' value='' />
-          </div>
-          {/* end::Checkbox */}
-          {/* begin::Description */}
-          <div className='flex-grow-1'>
-            <a href='#' className='text-gray-800 text-hover-primary fw-bold fs-6'>
-              Stakeholder Meeting
-            </a>
-            <span className='text-muted fw-semibold d-block'>Due in 3 Days</span>
-          </div>
-          {/* end::Description */}
-          <span className='badge badge-light-primary fs-8 fw-bold'>New</span>
-        </div>
-        {/* end:Item */}
-        {/* begin::Item */}
-        <div className='d-flex align-items-center mb-8'>
-          {/* begin::Bullet */}
-          <span className='bullet bullet-vertical h-40px bg-warning'></span>
-          {/* end::Bullet */}
-          {/* begin::Checkbox */}
-          <div className='form-check form-check-custom form-check-solid mx-5'>
-            <input className='form-check-input' type='checkbox' value='' />
-          </div>
-          {/* end::Checkbox */}
-          {/* begin::Description */}
-          <div className='flex-grow-1'>
-            <a href='#' className='text-gray-800 text-hover-primary fw-bold fs-6'>
-              Scoping &amp; Estimations
-            </a>
-            <span className='text-muted fw-semibold d-block'>Due in 5 Days</span>
-          </div>
-          {/* end::Description */}
-          <span className='badge badge-light-warning fs-8 fw-bold'>New</span>
-        </div>
-        {/* end:Item */}
-        {/* begin::Item */}
-        <div className='d-flex align-items-center mb-8'>
-          {/* begin::Bullet */}
-          <span className='bullet bullet-vertical h-40px bg-primary'></span>
-          {/* end::Bullet */}
-          {/* begin::Checkbox */}
-          <div className='form-check form-check-custom form-check-solid mx-5'>
-            <input className='form-check-input' type='checkbox' value='' />
-          </div>
-          {/* end::Checkbox */}
-          {/* begin::Description */}
-          <div className='flex-grow-1'>
-            <a href='#' className='text-gray-800 text-hover-primary fw-bold fs-6'>
-              KPI App Showcase
-            </a>
-            <span className='text-muted fw-semibold d-block'>Due in 2 Days</span>
-          </div>
-          {/* end::Description */}
-          <span className='badge badge-light-primary fs-8 fw-bold'>New</span>
-        </div>
-        {/* end:Item */}
-        {/* begin::Item */}
-        <div className='d-flex align-items-center mb-8'>
-          {/* begin::Bullet */}
-          <span className='bullet bullet-vertical h-40px bg-danger'></span>
-          {/* end::Bullet */}
-          {/* begin::Checkbox */}
-          <div className='form-check form-check-custom form-check-solid mx-5'>
-            <input className='form-check-input' type='checkbox' value='' />
-          </div>
-          {/* end::Checkbox */}
-          {/* begin::Description */}
-          <div className='flex-grow-1'>
-            <a href='#' className='text-gray-800 text-hover-primary fw-bold fs-6'>
-              Project Meeting
-            </a>
-            <span className='text-muted fw-semibold d-block'>Due in 12 Days</span>
-          </div>
-          {/* end::Description */}
-          <span className='badge badge-light-danger fs-8 fw-bold'>New</span>
-        </div>
-        {/* end:Item */}
-        {/* begin::Item */}
-        <div className='d-flex align-items-center'>
-          {/* begin::Bullet */}
-          <span className='bullet bullet-vertical h-40px bg-success'></span>
-          {/* end::Bullet */}
-          {/* begin::Checkbox */}
-          <div className='form-check form-check-custom form-check-solid mx-5'>
-            <input className='form-check-input' type='checkbox' value='' />
-          </div>
-          {/* end::Checkbox */}
-          {/* begin::Description */}
-          <div className='flex-grow-1'>
-            <a href='#' className='text-gray-800 text-hover-primary fw-bold fs-6'>
-              Customers Update
-            </a>
-            <span className='text-muted fw-semibold d-block'>Due in 1 week</span>
-          </div>
-          {/* end::Description */}
-          <span className='badge badge-light-success fs-8 fw-bold'>New</span>
-        </div>
-        {/* end:Item */}
-      </div>
-      {/* end::Body */}
-    </div>
   )
 }
 
-export {ListsWidget3}
+const chartOptions = (chartColor, chartHeight) => {
+  const labelColor = getCSSVariableValue('--kt-gray-800')
+  const strokeColor = getCSSVariableValue('--kt-gray-300')
+  const baseColor = getCSSVariableValue('--kt-' + chartColor)
+  const lightColor = getCSSVariableValue('--kt-' + chartColor + '-light')
+
+  return {
+    series: [
+      {
+        name: 'Net Profit',
+        data: [15, 25, 15, 40, 20, 50],
+      },
+    ],
+    chart: {
+      fontFamily: 'inherit',
+      type: 'area',
+      height: chartHeight,
+      toolbar: {
+        show: false,
+      },
+      zoom: {
+        enabled: false,
+      },
+      sparkline: {
+        enabled: true,
+      },
+    },
+    plotOptions: {},
+    legend: {
+      show: false,
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    fill: {
+      type: 'solid',
+      opacity: 1,
+    },
+    stroke: {
+      curve: 'smooth',
+      show: true,
+      width: 3,
+      colors: [baseColor],
+    },
+    xaxis: {
+      categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+      axisBorder: {
+        show: false,
+      },
+      axisTicks: {
+        show: false,
+      },
+      labels: {
+        show: false,
+        style: {
+          colors: labelColor,
+          fontSize: '12px',
+        },
+      },
+      crosshairs: {
+        show: false,
+        position: 'front',
+        stroke: {
+          color: strokeColor,
+          width: 1,
+          dashArray: 3,
+        },
+      },
+      tooltip: {
+        enabled: false,
+      },
+    },
+    yaxis: {
+      min: 0,
+      max: 60,
+      labels: {
+        show: false,
+        style: {
+          colors: labelColor,
+          fontSize: '12px',
+        },
+      },
+    },
+    states: {
+      normal: {
+        filter: {
+          type: 'none',
+          value: 0,
+        },
+      },
+      hover: {
+        filter: {
+          type: 'none',
+          value: 0,
+        },
+      },
+      active: {
+        allowMultipleDataPointsSelection: false,
+        filter: {
+          type: 'none',
+          value: 0,
+        },
+      },
+    },
+    tooltip: {
+      style: {
+        fontSize: '12px',
+      },
+      y: {
+        formatter: function (val) {
+          return '$' + val + ' thousands'
+        },
+      },
+    },
+    colors: [lightColor],
+    markers: {
+      colors: [lightColor],
+      strokeColors: [baseColor],
+      strokeWidth: 3,
+    },
+  }
+}
+
+export {MixedWidget10}

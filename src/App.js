@@ -1,48 +1,20 @@
 import './App.css';
-import Navbar from "./components/Navbar/Navbar";
-import Main from "./components/Main/Main";
 import Header from "./components/Header/Header";
-import {Route} from "react-router-dom";
-import * as PropTypes from "prop-types";
-import {PATHS} from "./common/constants/routes";
-import SignIn from "./Auth/SignIn/SignIn";
-import {MainAuth} from "./Auth";
-
-function Routes(props) {
-    return null;
-}
-
-Routes.propTypes = {children: PropTypes.node};
+import Main from "./components/Main/Main";
+import {Route, Routes} from "react-router-dom";
+import SignIn from "./components/SignIn/SignIn";
 
 function App() {
   return (
     <div className="App">
-        <Routes>
-            {/** AUTH **/}
-            <Route element={<MainAuth />}>
-                /TODO
-                {/*<Route path={PATHS.AUTH.LOGIN} element={<Login />} />*/}
-                <Route path={PATHS.AUTH.SIGN_IN} element={<SignIn />} />
-            </Route>
-
-            {/** MAIN components **/}
-            <Route
-                path="/*"
-                element={
-                        <Main />
-                }
-            />
-
-            {/** Service routes **/}
-            /TODO
-            {/*<Route path={PATHS.LOGOUT} element={<Logout />} />*/}
-            {/*<Route path="*" element={<Navigate to={PATHS.AUTH.LOGIN} />} />*/}
-        </Routes>
-      {/*<Navbar/>*/}
-        <div>
-            <Header/>
-            <Main/>
-        </div>
+            <Routes>
+                <Route path="/signIn" element={<SignIn/>} />
+                <Route path="/main" element={<>
+                 <Header/>
+                <Main/>
+                </>}
+                />
+            </Routes>
     </div>
   );
 }

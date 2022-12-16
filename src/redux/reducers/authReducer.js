@@ -1,12 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import instanceAPI from "../../api/instance";
+import instanceAPI from "../../api/axios";
 
 export const fetchAuth = createAsyncThunk("auth/fetchAuth", async (params) => {
     const { data } = await instanceAPI.post("/auth/", params);
-    // axios.post("https://dev-1.dev.customary.io/api/v2/auth/", {
-    //     "email": "gracemckenna26@gmail.com",
-    //     "password": "mckennagrace26"
-    // }).then(res => console.log(res))
     return data;
 });
 
@@ -22,7 +18,6 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         logout: (state) => {
-
             state.isAuth = false
             state.data = null
             localStorage.removeItem('token')

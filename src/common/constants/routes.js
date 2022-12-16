@@ -12,5 +12,3 @@ export const PATHS = {
     ROOT: '/main',
   },
 };
-
-// export const OPEN_PATHS = [PATHS.ROOT, PATHS.AUTH.SIGN_IN, PATHS.LOGOUT];

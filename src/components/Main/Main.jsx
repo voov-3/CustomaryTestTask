@@ -1,7 +1,8 @@
 import React from 'react';
 import "./Main.scss"
-import svg_1 from '../../images/1.svg'
-import Footer from "../Footer/Footer";
+import {ListsWidget3} from "../../MetronicC/ListsWidget3";
+import {MixedWidget10} from "../../MetronicC/MixedVidget";
+import {ListsWidget5} from "../../MetronicC/Activities";
 
 const Main = () => {
     return (
@@ -11,14 +12,13 @@ const Main = () => {
                 <div className={"today"}>
                     <div className={"day"}>Today:</div>
                     <div className={"date"}>Jan 31</div>
-                    <div className={"circle"}></div>
+                    <div className={"circle"}/>
                 </div>
             </div>
             <div className="content">
-                <div className={"first"}>
-                    <img src={svg_1} alt="1" width="100%"/>
-                </div>
-                <Footer/>
+                <ListsWidget3/>
+                <MixedWidget10/>
+                <ListsWidget5/>
             </div>
         </div>
     );
