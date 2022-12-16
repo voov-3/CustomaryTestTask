@@ -1,0 +1,56 @@
+.navbar{
+  background: #2C2E3E;
+  height: 4150px;
+  overflow: hidden;
+  top:0;
+  left:0;
+  bottom: 0;
+  width: 255px;
+  color: #868AA8;
+  .title{
+    background: #282A3C;
+    font-size: 20px;
+    color: white;
+   padding: 30px 0 30px 30px ;
+
+  }
+  .dashboard{
+    font-weight: 400;
+    font-size: 14px;
+    padding: 40px 30px 40px 43px;
+    display: flex;
+    justify-content: space-between;
+    .number{
+        width: 20px;
+      height: 20px;
+      background: #F4516C;
+      color: white;
+      font-weight: 400;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+  }
+  .content{
+    padding-left: 28px;
+    .itemList{
+        .label{
+          padding: 10px 0;
+          color: #464B66;
+          font-weight: 500;
+          font-size: 11px;
+          text-transform: uppercase;
+        }
+        .links{
+          padding-left: 43px;
+          .link{
+            padding: 10px 0;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+  }
+}

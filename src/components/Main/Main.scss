@@ -1,0 +1,166 @@
+.main {
+  background: #F2F2F2;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+    padding: 0 30px;
+
+    .dashboard {
+      font-weight: 500;
+      font-size: 21px;
+      color: #3F4047;
+    }
+
+    .today {
+      background: #FFFFFF;
+      border-radius: 21px;
+      display: flex;
+      align-items: center;
+      padding: 10px 5px 10px 18px;
+
+      .day {
+        font-weight: 400;
+        font-size: 14px;
+        color: #AAAEB8;
+        margin-right: 4px;
+      }
+
+      .date {
+        color: #716ACA;
+        font-weight: 600;
+        font-size: 14px;
+        margin-right: 22px;
+      }
+
+      .circle {
+        width: 32px;
+        height: 32px;
+        background: #716ACA;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .content {
+    padding: 30px;
+    height: 100vh;
+
+    .card {
+      background: #FFFFFF;
+      box-shadow: 0 1px 15px rgba(69, 65, 78, 0.08);
+    }
+
+    .first {
+      display: flex;
+      margin-bottom: 30px;
+
+      .item {
+        width: 33%;
+        margin-right: 30px;
+      }
+
+      .graph {
+        padding-top: 20px;
+      }
+
+      .item:last-child {
+        margin-right: 0;
+      }
+
+    }
+
+    .second {
+      display: flex;
+      margin-bottom: 30px;
+
+      .item {
+        width: 33%;
+        border-right: 1px solid #EAEAEA;
+      }
+
+      .item:last-child {
+        border: none;
+      }
+    }
+
+    .calendar {
+      display: flex;
+      width: 100%;
+      background: white;
+      margin-bottom: 30px;
+
+    }
+
+    .third {
+      display: flex;
+      margin-bottom: 30px;
+      .item{
+        margin-right: 30px;
+        width: 50%;
+      }
+      .item:last-child{
+        margin-right: 0;
+      }
+    }
+
+    .fourth {
+      display: flex;
+      margin-bottom: 30px;
+      .item{
+        margin-right: 30px;
+        width: 50%;
+      }
+      .item:last-child{
+        margin-right: 0;
+      }
+    }
+
+    .fifth {
+      display: flex;
+      margin-bottom: 30px;
+
+      .table{
+        margin-right: 30px;
+        width: 70%;
+      }
+      .newUsers{
+        width: 30%;
+      }
+    }
+
+    .sixth {
+      display: flex;
+      margin-bottom: 30px;
+
+      .item {
+        width: 33%;
+        margin-right: 30px;
+      }
+      .graphs{
+        .graphsItem{
+          margin-bottom: 30px;
+        }
+        .graphsItem:last-child{
+          margin-bottom: 0;
+        }
+      }
+
+      .item:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .seventh {
+      display: flex;
+      .bestSellers{
+        margin-right: 30px;
+        width: 70%;
+      }
+      .authorsProfit{
+        width: 30%;
+      }
+    }
+  }
+}
